@@ -7,7 +7,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "db:reset": "sqlite3 db/db.sqlite < db/1-reset.sql",
-    "db:seed": "sqlite3 db/db.sqlite < db/migrations/2-seed.sql"
+    "db:seed": "sqlite3 db/db.sqlite < db/2-seed.sql"
   },
   "keywords": [],
   "author": "",
