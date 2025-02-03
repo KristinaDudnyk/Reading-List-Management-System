@@ -14,23 +14,23 @@ app.get("/", async (req, res) => {
 
 // GET user
 app.get("/auth/login", async (req, res) => {
-  const { username, email } = req.body;
+  const { username, email } = req.query;
   const user = await User.findUser(username, email);
-  res.render("readingList.ejs", { user });
+  res.render("index.ejs", { user });
 });
 
 // POST user
 app.post("/auth/register", async (req, res) => {
   const { username, first_name, last_name, email } = req.body;
   const user = await User.createUser(username, first_name, last_name, email);
-  res.render("readingList.ejs", { user });
+  res.render("index.ejs", { user });
 });
 
 // DELETE user
-app.post("/auth/register", async (req, res) => {
+app.delete("/auth/register", async (req, res) => {
   const { username, email } = req.body;
   const user = await User.deleteUser(username, email);
-  res.render("books.ejs", { user });
+  res.render("index.ejs", { user });
 });
 
 // GET books

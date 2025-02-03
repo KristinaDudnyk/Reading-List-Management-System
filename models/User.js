@@ -5,7 +5,7 @@ class User {
     try {
       const query = "SELECT * FROM users WHERE username = ? AND email = ?";
       const results = await db.raw(query, [username, email]);
-      return results.rows[0];
+      return results[0];
     } catch (error) {
       console.error("Error finding user:", error);
       throw error;
@@ -22,7 +22,7 @@ class User {
         last_name,
         email,
       ]);
-      return results.rows[0];
+      return results;
     } catch (error) {
       console.error("Error creating user:", error);
       throw error;
@@ -33,7 +33,7 @@ class User {
     try {
       const query = "DELETE FROM users WHERE username = ? AND email = ?";
       const results = await db.raw(query, [username, email]);
-      return results.rows;
+      return results;
     } catch (error) {
       console.error("Error deleting user:", error);
       throw error;
