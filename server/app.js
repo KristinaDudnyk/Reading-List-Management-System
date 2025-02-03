@@ -34,6 +34,7 @@ app.post("/auth/register", async (req, res) => {
 });
 
 // GET books
+
 app.get("/book", async (req, res) => {
   const books = await Book.findAll();
   res.render("books.ejs", { books });
@@ -54,56 +55,60 @@ app.put("/book/:id", async (req, res) => {
   res.redirect("books.ejs", { books });
 })
 
-
-//Adding book to reading list including error handling 
-app.post('/reading-list', (req, res) => {
+//Adding book to reading list including error handling
+app.post("/reading-list", (req, res) => {
   const newBook = req.body;
-  
+
   if (!newBook.title || !newBook.author) {
-    return res.status(400).send({ message: 'Title and author are required' })
+    return res.status(400).send({ message: "Title and author are required" });
   }
 
-  newBook.id = readingList.length ? readingList[readingList.length - 1].id + 1 : 1
+  newBook.id = readingList.length
+    ? readingList[readingList.length - 1].id + 1
+    : 1;
   newBook.read = false; // Default read status
 
   try {
     readingList.push(newBook);
-    res.status(201).send({ message: 'Book added successfully', book: newBook })
+    res.status(201).send({ message: "Book added successfully", book: newBook });
   } catch (error) {
-    res.status(500).send({ message: 'An error occurred while adding the book', error: error.message })
+    res.status(500).send({
+      message: "An error occurred while adding the book",
+      error: error.message,
+    });
   }
 });
 
-
 //Delete book from reading list
 app.delete("/book", async (req, res) => {
-  const bookId = parseInt(req.params.id)
-  const bookIndex = readingList.findIndex(book => book.id === bookId)
+  const bookId = parseInt(req.params.id);
+  const bookIndex = readingList.findIndex((book) => book.id === bookId);
 
   if (bookIndex !== -1) {
-      readingList.splice(bookIndex, 1)
-      res.status(200).send({ message: 'Book deleted successfully' })
+    readingList.splice(bookIndex, 1);
+    res.status(200).send({ message: "Book deleted successfully" });
   } else {
-      res.status(404).send({ message: 'Book not found' })
+    res.status(404).send({ message: "Book not found" });
   }
-
-})
+});
 
 //Edit reading list of read status
 app.put("/readingList", async (req, res) => {
   const bookId = parseInt(req.params.id);
-  const book = readingList.find(book => book.id === bookId);
+  const book = readingList.find((book) => book.id === bookId);
 
   if (book) {
-      book.read = req.body.read;
-      res.status(200).send({ message: 'Book read status updated successfully', book });
+    book.read = req.body.read;
+    res
+      .status(200)
+      .send({ message: "Book read status updated successfully", book });
   } else {
-      res.status(404).send({ message: 'Book not found' });
+    res.status(404).send({ message: "Book not found" });
   }
-})
+});
 
 //Query user statistics
-app.get("/user", async (req, res) => {
+app.get("/user", async (req, res) => {});
 
 })
 
