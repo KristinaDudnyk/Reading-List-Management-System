@@ -20,6 +20,7 @@ class User {
       `;
       
       await db.raw(query, [username, first_name, last_name, email]);
+  
     } catch (error) {
       console.error("Error creating user:", error);
       throw error;
