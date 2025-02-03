@@ -52,7 +52,7 @@ app.post('/reading-list', (req, res) => {
   const newBook = req.body;
   
   if (!newBook.title || !newBook.author) {
-    return res.status(400).send({ message: 'Title and author are required' })
+    return res.status(400).send({ message: "Title and author are required" })
   }
 
   newBook.id = readingList.length ? readingList[readingList.length - 1].id + 1 : 1
@@ -60,9 +60,9 @@ app.post('/reading-list', (req, res) => {
 
   try {
     readingList.push(newBook);
-    res.status(201).send({ message: 'Book added successfully', book: newBook })
+    res.status(201).send({ message: "Book added successfully", book: newBook })
   } catch (error) {
-    res.status(500).send({ message: 'An error occurred while adding the book', error: error.message })
+    res.status(500).send({ message: "An error occurred while adding the book", error: error.message })
   }
 });
 
