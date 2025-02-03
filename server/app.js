@@ -1,36 +1,36 @@
 import express from "express";
-import User from "../models/Userjs";
+import User from "../models/User.js";
 import Book from "../models/Book.js";
-import ReadingList from "../models/ReadingList.js";
 
 const app = express();
 app.set("views", "views");
 app.set("view engine", "ejs");
 app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+
 
 app.get("/", async (req, res) => {
   res.render("index.ejs");
 });
 
 // GET user
-app.get("/auth/login", async (req, res) => {
-  const { username, email } = req.body;
-  const user = await User.findUser(username, email);
-  res.render("readingList.ejs", { user });
+app.get("/auth/login/:id", async (req, res) => {
+  const id = req.params.id;
+  const user = await User.findUser(id);
+  res.status(200).json({user})
 });
 
 // POST user
 app.post("/auth/register", async (req, res) => {
   const { username, first_name, last_name, email } = req.body;
-  const user = await User.createUser(username, first_name, last_name, email);
-  res.render("readingList.ejs", { user });
+  await User.createUser(username, first_name, last_name, email);
+  res.status(200).json({username, first_name, last_name, email})
 });
 
 // DELETE user
-app.post("/auth/register", async (req, res) => {
-  const { username, email } = req.body;
-  const user = await User.deleteUser(username, email);
-  res.render("books.ejs", { user });
+app.delete("/delete/user/:id", async (req, res) => {
+  await User.deleteUser(req.params.id);
+  res.status(200).json({ msg: 'successfully deleted user' })
 });
 
 // GET books
@@ -110,6 +110,6 @@ app.put("/readingList", async (req, res) => {
 //Query user statistics
 app.get("/user", async (req, res) => {});
 
-})
+
 
 export default app; 

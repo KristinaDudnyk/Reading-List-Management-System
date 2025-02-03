@@ -1,11 +1,11 @@
 import db from "../db/index.js";
 
 class User {
-  static async findUser(username, email) {
+  static async findUser(id) {
     try {
-      const query = "SELECT * FROM users WHERE username = ? AND email = ?";
-      const results = await db.raw(query, [username, email]);
-      return results.rows[0];
+      const query = "SELECT * FROM users WHERE id = ?";
+      const results = await db.raw(query, [id]);
+      return results;
     } catch (error) {
       console.error("Error finding user:", error);
       throw error;
@@ -14,26 +14,22 @@ class User {
 
   static async createUser(username, first_name, last_name, email) {
     try {
-      const query =
-        "INSERT INTO users (username, first_name, last_name, email) VALUES (?, ?, ?, ?)";
-      const results = await db.raw(query, [
-        username,
-        first_name,
-        last_name,
-        email,
-      ]);
-      return results.rows[0];
+      const query = `
+        INSERT INTO users (username, first_name, last_name, email)
+        VALUES (?, ?, ?, ?)
+      `;
+      
+      await db.raw(query, [username, first_name, last_name, email]);
     } catch (error) {
       console.error("Error creating user:", error);
       throw error;
     }
   }
 
-  static async deleteUser(username, email) {
+  static async deleteUser(id) {
     try {
-      const query = "DELETE FROM users WHERE username = ? AND email = ?";
-      const results = await db.raw(query, [username, email]);
-      return results.rows;
+      const query = "DELETE FROM users WHERE id = ?";
+      await db.raw(query, [id]);
     } catch (error) {
       console.error("Error deleting user:", error);
       throw error;
