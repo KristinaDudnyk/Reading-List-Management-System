@@ -31,25 +31,38 @@ app.post("/auth/register", async (req, res) => {
   res.render("books.ejs", { user });
 });
 
-//Query book details -  return all details
+// GET books
+app.get("/book", async (req, res) => {
 
-app.get("/", async (req, res) => {});
+})
 
-//Create book details
+// POST book
+app.post("/book", async (req, res) => {
 
-app.post("/", async (req, res) => {});
+})
 
-//Editing book details
-app.post("/", async (req, res) => {});
+// PUT book
+app.put("/book/:id", async (req, res) => {
 
-//Adding book to reading list including error handling
-app.post("/", async (req, res) => {});
+})
+
+
+//Adding book to reading list including error handling 
+app.post("/book/:readingList", async (req, res) => {
+
+})
 
 //Delete book from reading list
-app.delete("/", async (req, res) => {});
+app.delete("/book", async (req, res) => {
+
+})
 
 //Edit reading list of read status
-app.post("/", async (req, res) => {});
+app.put("/readingList", async (req, res) => {
+
+})
 
 //Query user statistics
-app.get("/", async (req, res) => {});
+app.get("/user", async (req, res) => {
+
+})
