@@ -1,16 +1,17 @@
-import db from '../db/index.js'
-
 class ReadingList {
-   constructor(id, title, author, genre, summary, book_type, isRead = 'N') {
-    this.id = id
-    this.id = title
-    this.id = author
-    this.id = genre
-    this.id = summary
-    this.id = book_type
-    this.isRead = isRead === 'Y'
-   }
+    constructor(id, title, author, genre, summary, book_type, isRead = 'N') {
+        this.id = id
+        this.title = title
+        this.author = author
+        this.genre = genre
+        this.summary = summary
+        this.book_type = book_type
+        this.isRead = isRead === 'Y'
+    }
 
-markAsRead() {
-    this.isRead = true
+    markAsRead() {
+        this.isRead = true
+    }
 }
+
+export default ReadingList
