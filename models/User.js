@@ -2,13 +2,9 @@ import db from "../db/index.js";
 
 class User {
   static async findUser(username, email) {
-    console.log("username, email", username, email);
-
     try {
       const query = "SELECT * FROM users WHERE username = ? AND email = ?";
       const results = await db.raw(query, [username, email]);
-      console.log(results[0]);
-
       return results[0];
     } catch (error) {
       console.error("Error finding user:", error);
