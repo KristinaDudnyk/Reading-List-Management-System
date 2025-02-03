@@ -1,5 +1,5 @@
 import express from "express";
-import User from "../models/Userjs";
+import User from "../models/User.js";
 import Book from "../models/Book.js";
 import ReadingList from "../models/ReadingList.js";
 
@@ -16,7 +16,7 @@ app.get("/", async (req, res) => {
 app.get("/auth/login", async (req, res) => {
   const { username, email } = req.body;
   const user = await User.findUser(username, email);
-  res.render("readingList.ejs", { user });
+ // res.render("readingList.ejs", { user });
 });
 
 // POST user
@@ -110,6 +110,5 @@ app.put("/readingList", async (req, res) => {
 //Query user statistics
 app.get("/user", async (req, res) => {});
 
-})
 
 export default app; 
