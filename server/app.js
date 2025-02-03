@@ -11,46 +11,46 @@ app.get("/", async (req, res) => {
 
 
 // Query User database 
-app.get("/", async (req, res) => {
+app.get("/user", async (req, res) => {
 
 })
 
 //Query book details -  return all details
 
-app.get("/", async (req, res) => {
+app.get("/book", async (req, res) => {
 
 })
 
 
-//Create book details
+//Create book 
 
-app.post("/", async (req, res) => {
+app.post("/book", async (req, res) => {
 
 })
 
 
 //Editing book details
-app.post("/", async (req, res) => {
+app.put("/book/:id", async (req, res) => {
 
 })
 
 
 //Adding book to reading list including error handling 
-app.post("/", async (req, res) => {
+app.post("/book/:readingList", async (req, res) => {
 
 })
 
 //Delete book from reading list
-app.delete("/", async (req, res) => {
+app.delete("/book", async (req, res) => {
 
 })
 
 //Edit reading list of read status
-app.post("/", async (req, res) => {
+app.put("/readingList", async (req, res) => {
 
 })
 
 //Query user statistics
-app.get("/", async (req, res) => {
+app.get("/user", async (req, res) => {
 
 })
