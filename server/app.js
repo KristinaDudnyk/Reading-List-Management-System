@@ -1,5 +1,5 @@
 import express from "express";
-import User from "../models/Userjs";
+import User from "../models/User.js";
 
 const app = express();
 app.set("views", "views");
@@ -98,3 +98,5 @@ app.put("/readingList", async (req, res) => {
 app.get("/user", async (req, res) => {
 
 })
+
+export default app

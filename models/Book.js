@@ -1,3 +1,5 @@
+import db from '../db/index.js'
+
 class Book {
     static genres = [
         'Fiction',
