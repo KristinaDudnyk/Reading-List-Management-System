@@ -1,5 +1,7 @@
 import express from "express";
 import User from "../models/Userjs";
+import Book from "../models/Book.js";
+import ReadingList from "../models/ReadingList.js";
 
 const app = express();
 app.set("views", "views");
@@ -33,17 +35,23 @@ app.post("/auth/register", async (req, res) => {
 
 // GET books
 app.get("/book", async (req, res) => {
-
+  const books = await Book.findAll();
+  res.render("books.ejs", { books });
 })
 
 // POST book
 app.post("/book", async (req, res) => {
-
+  const { title, author, genre, summary, book_type, username } = req.body;
+  await Book.addBook(title, author, genre, summary, book_type, username);
+  res.redirect("books.ejs", { books });
 })
 
 // PUT book
 app.put("/book/:id", async (req, res) => {
-
+  const { id } = req.params;
+  const { title, author, genre, summary, book_type } = req.body;
+  await Book.editBook(id, title, author, genre, summary, book_type);
+  res.redirect("books.ejs", { books });
 })
 
 
@@ -98,3 +106,5 @@ app.put("/readingList", async (req, res) => {
 app.get("/user", async (req, res) => {
 
 })
+
+export default app; 
