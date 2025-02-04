@@ -111,6 +111,4 @@ app.put("/readingList", async (req, res) => {
 //Query user statistics
 app.get("/user", async (req, res) => {});
 
-
-
 export default app; 
