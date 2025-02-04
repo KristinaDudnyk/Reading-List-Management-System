@@ -1,6 +1,7 @@
 import express from "express";
 import User from "../models/User.js";
 import Book from "../models/Book.js";
+import ReadingList from "../models/ReadingList.js";
 
 const app = express();
 app.set("views", "views");
@@ -62,21 +63,19 @@ app.put("/book/:id", async (req, res) => {
 })
 
 //Adding book to reading list including error handling
-app.post("/reading-list", (req, res) => {
-  const newBook = req.body;
-
-  if (!newBook.title || !newBook.author) {
-    return res.status(400).send({ message: "Title and author are required" });
-  }
-
-  newBook.id = readingList.length
-    ? readingList[readingList.length - 1].id + 1
-    : 1;
-  newBook.read = false; // Default read status
+app.post("/readinglist/add", async (req, res) => {
 
   try {
-    readingList.push(newBook);
-    res.status(201).send({ message: "Book added successfully", book: newBook });
+    const payload = req.body;
+    console.log(payload)
+
+    if (!payload.user_id || !payload.book_id || !payload.read_status || !payload.want_to_read) {
+      return res.status(400).send({ message: "missing field" });
+    }
+
+    await ReadingList.addBooktolist(payload)
+
+    res.status(201).send({ message: "Book added successfully" });
   } catch (error) {
     res.status(500).send({
       message: "An error occurred while adding the book",
@@ -86,31 +85,37 @@ app.post("/reading-list", (req, res) => {
 });
 
 //Delete book from reading list
-app.delete("/book", async (req, res) => {
-  const bookId = parseInt(req.params.id);
-  const bookIndex = readingList.findIndex((book) => book.id === bookId);
+app.delete("/delete/readinglist/book/:userId/:bookId", async (req, res) => {
 
-  if (bookIndex !== -1) {
-    readingList.splice(bookIndex, 1);
-    res.status(200).send({ message: "Book deleted successfully" });
-  } else {
-    res.status(404).send({ message: "Book not found" });
-  }
+  const userId = req.params.userId
+  const bookId = req.params.bookId
+
+
+    try {
+      await ReadingList.removefromlist(userId, bookId)
+      res.status(200).send({ message: "Book deleted successfully" });
+    } catch {
+      res.status(400).send({ message: "Failed to delete user" });
+
+    }
+ 
 });
 
 //Edit reading list of read status
-app.put("/readingList", async (req, res) => {
-  const bookId = parseInt(req.params.id);
-  const book = readingList.find((book) => book.id === bookId);
+app.put("/update/readingList/:userId/:bookId", async (req, res) => {
 
-  if (book) {
-    book.read = req.body.read;
-    res
-      .status(200)
-      .send({ message: "Book read status updated successfully", book });
-  } else {
-    res.status(404).send({ message: "Book not found" });
-  }
+  const userId = req.params.userId
+  const bookId = req.params.bookId
+
+  const readStatus = req.body.read_status;
+
+    try {
+      await ReadingList.editreadstatus(userId, bookId, readStatus)
+      res.status(200).send({ message: "Book updated successfully" });
+    } catch {
+      res.status(400).send({ message: "Failed to update user" });
+    }
+
 });
 
 //Query user statistics
