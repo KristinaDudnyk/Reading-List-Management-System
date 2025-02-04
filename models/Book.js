@@ -1,4 +1,8 @@
+<<<<<<< Updated upstream
 import db from "../db/index.js";
+=======
+import db from '../db/index.js';
+>>>>>>> Stashed changes
 
 class Book {
   static genres = ["Fiction", "Non-fiction", "kids"];

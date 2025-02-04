@@ -39,6 +39,7 @@ app.delete("/delete/user/:id", async (req, res) => {
 // GET books
 app.get("/book", async (req, res) => {
   const books = await Book.findAll();
+<<<<<<< Updated upstream
   res.render("books.ejs", { books });
 });
 
@@ -50,13 +51,33 @@ app.post("/book", async (req, res) => {
   const books = await Book.addBook(title, author, genre, summary, book_type);
   res.render("books.ejs", { books });
 });
+=======
+  console.log(books)
+  res.status(200).json({books})
+})
+
+// POST book
+app.post("/book", async (req, res) => {
+  const { title, author, genre, summary, book_type, username } = req.body;
+  await Book.addBook(title, author, genre, summary, book_type, username);
+  res.status(200).json({msg: 'added book'})
+
+})
+>>>>>>> Stashed changes
 
 app.put("/book/:id", async (req, res) => {
   const { id } = req.params;
   const { title, author, genre, summary, book_type } = req.body;
+  console.log(id, title, author, genre, summary, book_type)
   await Book.editBook(id, title, author, genre, summary, book_type);
+<<<<<<< Updated upstream
   res.redirect("books.ejs", { books });
 });
+=======
+  res.status(200).json({msg: 'updated book'})
+
+})
+>>>>>>> Stashed changes
 
 //Adding book to reading list including error handling
 app.post("/reading-list", (req, res) => {
