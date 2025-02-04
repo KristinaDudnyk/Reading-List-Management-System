@@ -14,13 +14,16 @@ class User {
 
   static async createUser(username, first_name, last_name, email) {
     try {
-      const query = `
-        INSERT INTO users (username, first_name, last_name, email)
-        VALUES (?, ?, ?, ?)
-      `;
-      
-      await db.raw(query, [username, first_name, last_name, email]);
-  
+      const query =
+        "INSERT INTO users (username, first_name, last_name, email) VALUES (?, ?, ?, ?) RETURNING *";
+      const results = await db.raw(query, [
+        username,
+        first_name,
+        last_name,
+        email,
+      ]);
+      return results;
+
     } catch (error) {
       console.error("Error creating user:", error);
       throw error;
@@ -31,6 +34,7 @@ class User {
     try {
       const query = "DELETE FROM users WHERE id = ?";
       await db.raw(query, [id]);
+      return results;
     } catch (error) {
       console.error("Error deleting user:", error);
       throw error;
