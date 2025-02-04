@@ -3,6 +3,7 @@ import User from "../models/User.js";
 import Book from "../models/Book.js";
 import ReadingList from "../models/ReadingList.js";
 
+
 const app = express();
 app.set("views", "views");
 app.set("view engine", "ejs");
@@ -69,6 +70,7 @@ app.post("/readinglist/add", async (req, res) => {
     const payload = req.body;
     console.log(payload)
 
+
     if (!payload.user_id || !payload.book_id || !payload.read_status || !payload.want_to_read) {
       return res.status(400).send({ message: "missing field" });
     }
@@ -121,4 +123,26 @@ app.put("/update/readingList/:userId/:bookId", async (req, res) => {
 //Query user statistics
 app.get("/user", async (req, res) => {});
 
+
+
+  //Login form submission and validation logic. (Username only) Ticket:#55
+
+document.getElementById("logonForm").addEventListener("submit", function(event) {
+    event.preventDefault()
+
+    var username = document.getElementById("username").value
+
+    if (username === "admin") {
+        document.getElementById("message").textContent = "Logon successful!"
+        document.getElementById("message").style.color = "green"
+    } else {
+        document.getElementById("message").textContent = "Invalid username."
+    }
+})
+
+
+
+})
+
 export default app;
+

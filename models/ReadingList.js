@@ -1,5 +1,6 @@
 import db from '../db/index.js';
 
+
 class ReadingList {
 
   markAsRead() {

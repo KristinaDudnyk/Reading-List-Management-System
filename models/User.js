@@ -1,5 +1,6 @@
 import db from "../db/index.js";
 
+
 class User {
   static async findUser(id) {
     try {
