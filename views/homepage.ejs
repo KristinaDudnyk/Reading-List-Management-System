@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Books List</title>
+    <link rel="stylesheet" type="text/css" href="/homepage.css">
+</head>
+<body>
+    <h1>Books List</h1>
+    <form method="get" action="/homepage">
+        <label for="genre">Filter by genre:</label>
+        <select id="genre" name="genre">
+            <% if (allowedGenres) { %>
+                <% allowedGenres.forEach(g => { %>
+                    <option value="<%= g.toLowerCase() %>" <%= selectedGenre === g.toLowerCase() ? 'selected' : '' %>><%= g %></option>
+                <% }) %>
+            <% } %>
+        </select>
+        <button type="submit">Filter</button>
+    </form>
+    <ul>
+        <% if (books) { %>
+            <% books.forEach(book => { %>
+                <li data-genres="<%= book.genre.toLowerCase() %>">
+                    <h2><a href="/book/<%= book.id %>"><%= book.title %></a></h2>
+                    <p><strong>Summary:</strong> <%= book.summary %></p>
+                </li>
+            <% }) %>
+        <% } %>
+    </ul>
+</body>
+</html>
