@@ -97,6 +97,25 @@ app.put("/readingList", async (req, res) => {
 //Query user statistics
 app.get("/user", async (req, res) => {
 
+
+
+  //Login form submission and validation logic. (Username only) Ticket:#55
+
+document.getElementById("logonForm").addEventListener("submit", function(event) {
+    event.preventDefault()
+
+    var username = document.getElementById("username").value
+
+    if (username === "admin") {
+        document.getElementById("message").textContent = "Logon successful!"
+        document.getElementById("message").style.color = "green"
+    } else {
+        document.getElementById("message").textContent = "Invalid username."
+    }
+})
+
+
+
 })
 
 export default app
