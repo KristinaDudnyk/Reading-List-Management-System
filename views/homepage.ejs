@@ -1,9 +1,5 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Books List</title>
-    <link rel="stylesheet" type="text/css" href="/homepage.css">
-</head>
+<%- include('partials/navbar') %>
+
 <body>
     <h1>Books List</h1>
     <form method="get" action="/homepage">
@@ -27,5 +23,4 @@
             <% }) %>
         <% } %>
     </ul>
-</body>
-</html>
+<%- include('partials/footer') %>
