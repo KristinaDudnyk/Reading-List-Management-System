@@ -8,9 +8,7 @@ const app = express();
 app.set("views", "views");
 app.set("view engine", "ejs");
 app.use(express.json());
-
 app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
 
 
 app.get("/", async (req, res) => {
@@ -145,6 +143,6 @@ app.get("/homepage", async (req, res) => {
 
 });
   //Login form submission and validation logic. (Username only) Ticket:#55
-  
+
 export default app;
 

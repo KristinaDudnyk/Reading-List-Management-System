@@ -3,23 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Framerate</title>
+    <title>Document</title>
 </head>
 <body>
-    <div>
-        <h1>test</h1>
-        <!-- Script for login user page. ticket #55-->
-        <h2>Logon</h2>
-        <form id="logonForm">
-            <label for="username">Username:</label>
-            <input type="text" id="username" name="username" required>
-            <button type="submit">Logon</button>
-        </form>
-        <div id="message"></div>
-    </div>
-    <script src="script.js"></script>
-    <!-- -->
-
+    <%- include('partials/navbar') %>
+        <%- include('partials/login') %>
+    <%- include('partials/footer') %>
 </body>
 </html>
-
