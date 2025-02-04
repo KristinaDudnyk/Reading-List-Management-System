@@ -1,64 +1,49 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Reading List</title>
-  <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
-  <header>
-    <h1>Welcome, <%= user.first_name %> <%= user.last_name %>!</h1>
-  </header>
-  <main>
-    <section class="user-info">
-      <h2>User Information</h2>
-      <p><strong>Username:</strong> <%= user.username %></p>
-      <p><strong>Email:</strong> <%= user.email %></p>
-    </section>
-    <section class="reading-list">
-      <h2>Your Reading List</h2>
-      <table>
-        <thead>
-          <tr>
-            <th>Id</th>
-            <th>Title</th>
-            <th>Author</th>
-            <th>Genre</th>
-            <th>Summary</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% readingList.forEach(function(book) { %>
-            <tr>
-              <td><%= book.id %></td>
-              <td><%= book.title %></td>
-              <td><%= book.author %></td>
-              <td><%= book.genre %></td>
-              <td><%= book.summary %></td>
-            </tr>
-          <% }); %>
-        </tbody>
-      </table>
-    </section>
-    <section class="add-book">
-      <h2>Add a New Book</h2>
-      <form action="/reading-list" method="post">
-        <label for="title">Title:</label>
-        <input type="text" name="title" id="title" required>
-        
-        <label for="author">Author:</label>
-        <input type="text" name="author" id="author" required>
+  <h2>Your Reading List</h2>
 
-        <label for="genre">Genre:</label>
-        <input type="text" name="genre" id="genre">
-        
-        <label for="summary">Summary:</label>
-        <textarea name="summary" id="summary"></textarea>
+  
+  <form>
+    <label for="genre">Genre:</label>
+    <select id="genre" name="genre">
+      <option value="">All</option>
+      <option value="Fiction">Fiction</option>
+      <option value="Non-fiction">Non-fiction</option>
+      <option value="kids">Kids</option>
+    </select>
 
-        <button type="submit">Add Book</button>
-      </form>
-    </section>
-  </main>
+    <label for="readStatus">Read Status:</label>
+    <select id="readStatus" name="readStatus">
+      <option value="">All</option>
+      <option value="read">Read</option>
+      <option value="unread">Unread</option>
+    </select>
+
+    <button type="submit">Filter</button>
+  </form>
+
+  <!-- This bit below is for Reading List -->
+  <ul>
+    <% readingList.forEach(function(book) { %>
+      <li>
+        <%= book.title %> by <%= book.author %> - <%= book.genre %>
+        <form action="/updateReadStatus" method="POST" style="display:inline;">
+          <input type="hidden" name="book_id" value="<%= book.id %>">
+          <label>
+            <input type="checkbox" name="read_status" value="read" <%= book.isRead ? 'checked' : '' %>> Read
+          </label>
+          <button type="submit">Update</button>
+        </form>
+        <form action="/removeBookFromList" method="POST" style="display:inline;">
+          <input type="hidden" name="book_id" value="<%= book.id %>">
+          <button type="submit">Remove</button>
+        </form>
+      </li>
+    <% }) %>
+  </ul>
 </body>
 </html>

@@ -27,6 +27,11 @@ class ReadingList {
       "UPDATE reading_list SET read_status = ? WHERE user_id = ? AND book_id = ?";
     await db.raw(query, [read_status, user_id, book_id ]);
   }
-}
 
+static async getReadingList() {
+  const query = "SELECT * FROM reading_list";
+  const results = await db.raw(query);
+  return results;
+}
+}
 export default ReadingList;
