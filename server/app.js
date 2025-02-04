@@ -140,9 +140,5 @@ document.getElementById("logonForm").addEventListener("submit", function(event) 
     }
 })
 
-
-
-})
-
 export default app;
 
