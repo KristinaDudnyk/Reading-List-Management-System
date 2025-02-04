@@ -1,32 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="index.css" />
-    <link rel="stylesheet" href="../css/books.css" />
-    <title>Reading-List-Management-System</title>
-  </head>
-  <body>
-    <div>
-      <div class="books-container">
-        <% books.map((element, index) => { %>
-        <div class="book-item">
-          <div class="book-cover">
-            <img
-              width="200px"
-              src="https://s-media-cache-ak0.pinimg.com/564x/f9/8e/2d/f98e2d661445620266c0855d418aab71.jpg"
-            />
-          </div>
-          <div class="description">
-            <p class="title">
-              <%= element.title %><br />
-              <span class="author"><%= element.author %></span>
-            </p>
-          </div>
-        </div>
-        <% }) %>
-      </div>
+<%- include('partials/navbar') %>
+
+<div class="books-container">
+  <% books.map((element, index) => { %>
+  <div class="book-item">
+    <div class="book-cover">
+      <img
+        width="200px"
+        src="https://s-media-cache-ak0.pinimg.com/564x/f9/8e/2d/f98e2d661445620266c0855d418aab71.jpg"
+      />
     </div>
-  </body>
-</html>
+    <div class="description">
+      <p class="title">
+        <%= element.title %><br />
+        <span class="author"><%= element.author %></span>
+      </p>
+    </div>
+  </div>
+  <% }) %>
+</div>
+<%- include('partials/footer') %>
