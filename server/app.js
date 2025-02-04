@@ -128,7 +128,22 @@ app.get("/readinglist", async (req, res) => {
   res.render("readingList.ejs", { readingList });
 });
 
+app.get("/homepage", async (req, res) => {
+  const allowedGenres = Book.genres;
+  const selectedGenre = req.query.genre || '';
 
+  let books = await Book.findAll();
+
+  if (selectedGenre) {
+    books = books.filter(book => book.genre.toLowerCase() === selectedGenre.toLowerCase());
+
+  }
+
+  console.log("allowedGenres:", allowedGenres); 
+  console.log("books:", books);
+  res.render("homepage.ejs", { allowedGenres, books, selectedGenre });
+
+});
   //Login form submission and validation logic. (Username only) Ticket:#55
   
 export default app;
