@@ -12,3 +12,19 @@
     </ul>
   </div>
 </nav>
+<script>
+  const user = localStorage.getItem("user");
+
+  if (user) {
+    const userData = JSON.parse(user); // Convert string to object
+
+    if (userData.id) {
+      // Select the user link and update the href
+      const userLink = document.querySelector(".navbar-link[href='/user']");
+      if (userLink) {
+        userLink.href = `/user/${userData.id}`; // Set dynamic URL
+        // Set dynamic URL for /readinglist here
+      }
+    }
+  }
+</script>
