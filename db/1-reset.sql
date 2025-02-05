@@ -12,7 +12,6 @@ CREATE TABLE IF NOT EXISTS books (
     author TEXT NOT NULL,
     genre TEXT NOT NULL,
     summary TEXT NOT NULL,
-    book_type TEXT NOT NULL,
     cover TEXT NOT NULL
 );
 
