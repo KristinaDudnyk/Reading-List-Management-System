@@ -14,8 +14,7 @@ app.set("views", "views");
 app.set("view engine", "ejs");
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static('public'))
-
+app.use(express.static("public"));
 
 app.get("/", async (req, res) => {
   res.render("index.ejs");
@@ -27,8 +26,8 @@ app.get("/auth/login", async (req, res) => {
   const user = await User.findUser(username, email);
   res.render("userPage.ejs", { user });
 });
-// endpoin for
-app.get("/user", async (req, res) => {
+// endpoin for putUserInfoToLocalStorage
+app.get("/user/obj", async (req, res) => {
   const { username, email } = req.query;
   const user = await User.findUser(username, email);
   res.status(200).json(user);
@@ -124,7 +123,12 @@ app.put("/update/readingList/:userId/:bookId", async (req, res) => {
 });
 
 //Query user statistics
-app.get("/user", async (req, res) => {});
+app.get("/user", async (req, res) => {
+  const { username, email } = req.query;
+  const user = await User.findUser(username, email);
+  res.render("userPage.ejs", { user });
+});
+
 //Get the reading list
 app.get("/readinglist", async (req, res) => {
   const readingList = await ReadingList.getReadingList();
