@@ -4,6 +4,7 @@
   <title>Reading List</title>
 </head>
 <body>
+  <%- include('partials/navbar') %>
   <h2>Your Reading List</h2>
 
   
@@ -31,19 +32,20 @@
     <% readingList.forEach(function(book) { %>
       <li>
         <%= book.title %> by <%= book.author %> - <%= book.genre %>
-        <form action="/updateReadStatus" method="POST" style="display:inline;">
+        <form action="/editreadstatus" method="POST" style="display:inline;">
           <input type="hidden" name="book_id" value="<%= book.id %>">
           <label>
             <input type="checkbox" name="read_status" value="read" <%= book.isRead ? 'checked' : '' %>> Read
           </label>
           <button type="submit">Update</button>
         </form>
-        <form action="/removeBookFromList" method="POST" style="display:inline;">
+        <form action="/removefromlist" method="POST" style="display:inline;">
           <input type="hidden" name="book_id" value="<%= book.id %>">
           <button type="submit">Remove</button>
         </form>
       </li>
     <% }) %>
   </ul>
+  <%- include('partials/footer') %>
 </body>
 </html>

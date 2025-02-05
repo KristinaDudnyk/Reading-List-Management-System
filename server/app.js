@@ -8,7 +8,9 @@ const app = express();
 app.set("views", "views");
 app.set("view engine", "ejs");
 app.use(express.json());
+
 app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
 
 app.get("/", async (req, res) => {
@@ -121,10 +123,22 @@ app.put("/update/readingList/:userId/:bookId", async (req, res) => {
 //Query user statistics
 app.get("/user", async (req, res) => {});
 //Get the reading list
-app.get("/readinglist", async (req, res) => {
-  const readingList = await ReadingList.getReadingList(); 
-  res.render("readingList.ejs", { readingList });
+//app.get("/readinglist", async (req, res) => {
+ // const readingList = await ReadingList.getReadingList(); 
+ // res.render("readingList.ejs", { readingList });
+//});
+
+app.get('/readingList', async (req, res) => {
+  try {
+    const user_id = req.session.user_id; 
+    const readingList = await ReadingList.getReadingList(user_id);
+    res.render('readingList', { readingList });
+  } catch (error) {
+    console.error('Error fetching reading list:', error);
+    res.status(500).send('Server error');
+  }
 });
+
 
 app.get("/homepage", async (req, res) => {
   const allowedGenres = Book.genres;
@@ -143,6 +157,6 @@ app.get("/homepage", async (req, res) => {
 
 });
   //Login form submission and validation logic. (Username only) Ticket:#55
-
+  
 export default app;
 

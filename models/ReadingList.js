@@ -28,9 +28,9 @@ class ReadingList {
     await db.raw(query, [read_status, user_id, book_id ]);
   }
 
-static async getReadingList() {
-  const query = "SELECT * FROM reading_list";
-  const results = await db.raw(query);
+static async getReadingList(user_id) {
+  const query = "SELECT * FROM reading_list WHERE user_id = ? ";
+  const results = await db.raw(query [user_id]);
   return results;
 }
 }
