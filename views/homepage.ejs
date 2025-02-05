@@ -7,7 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/css/navbar.css">
     <link rel="stylesheet" href="/css/footer.css">
-    <link rel="stylesheet" type="text/css" href="/homepage.css">
+    <link rel="stylesheet" type="text/css" href="/css/homepage.css">
 </head>
 <body>
     <div id="page-container">
@@ -28,7 +28,7 @@
         </select>
         <button type="submit">Filter</button>
     </form>
-    <ul>
+    <ul class="list-of-books">
         <% if (books) { %>
             <% books.forEach(book => { %>
                 <li data-genres="<%= book.genre.toLowerCase() %>">
