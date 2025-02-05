@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <%- include('partials/navbar') %>
+    <div class="user-card">
+      <!-- <% console.log(user); %> -->
+      <h2><%= user.first_name %> <%= user.last_name %></h2>
+      <p><strong>Username:</strong> <%= user.username %></p>
+      <p><strong>Email:</strong> <%= user.email %></p>
+      <p><strong>ID:</strong> <%= user.id %></p>
+    </div>
+    <%- include('partials/footer') %>
+    <script>
+      console.lo(user);
+      localStorage.setItem("user", "test"); // Store in local storage
+    </script>
+  </body>
+</html>

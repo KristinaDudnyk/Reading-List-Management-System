@@ -1,13 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/styles.css" />
     <title>Document</title>
-</head>
-<body>
+  </head>
+  <body>
     <%- include('partials/navbar') %>
-        <%- include('partials/login') %>
+    <form action="/auth/login" method="GET">
+      <label for="berryId">Enter your username:</label>
+      <input id="username" name="username" required />
+      <label for="berryId">Enter your email:</label>
+      <input id="email" name="email" required />
+      <button type="submit">Log in</button>
+    </form>
     <%- include('partials/footer') %>
-</body>
+  </body>
 </html>
