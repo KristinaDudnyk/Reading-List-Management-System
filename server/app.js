@@ -21,13 +21,19 @@ app.get("/", async (req, res) => {
 });
 
 // GET user
-app.get("/auth/login/:id", async (req, res) => {
-  const id = req.params.id;
-  const user = await User.findUser(id);
-  res.status(200).json({ user });
+app.get("/auth/login", async (req, res) => {
+  const { username, email } = req.query;
+  const user = await User.findUser(username, email);
+  res.render("userPage.ejs", { user });
+});
+// endpoin for
+app.get("/user", async (req, res) => {
+  const { username, email } = req.query;
+  const user = await User.findUser(username, email);
+  res.status(200).json(user);
 });
 
-// POST user
+// POST user putUserInfoToLocalStorage
 app.post("/auth/register", async (req, res) => {
   const { username, first_name, last_name, email } = req.body;
   await User.createUser(username, first_name, last_name, email);
