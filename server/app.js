@@ -5,6 +5,7 @@ import path from "path";
 import User from "../models/User.js";
 import Book from "../models/Book.js";
 import ReadingList from "../models/ReadingList.js";
+import db from "../db/index.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -122,11 +123,28 @@ app.put("/update/readingList/:userId/:bookId", async (req, res) => {
   }
 });
 
-//Query user statistics
-app.get("/user", async (req, res) => {
-  const { username, email } = req.query;
-  const user = await User.findUser(username, email);
-  res.render("userPage.ejs", { user });
+// Load userPage + maybe Query user statistics
+app.get("/user/:id", async (req, res) => {
+  try {
+    const id = Number(req.params.id);
+    console.log(typeof id);
+
+    const user = await db("users").where({ id }).first();
+    console.log(user);
+
+    if (!user) {
+      return res
+        .status(404)
+        .render("userPage.ejs", { error: "User not found", user: null });
+    }
+
+    res.render("userPage.ejs", { user });
+  } catch (error) {
+    console.error("Error fetching user:", error);
+    res
+      .status(500)
+      .render("userPage.ejs", { error: "Internal server error", user: null });
+  }
 });
 
 //Get the reading list
