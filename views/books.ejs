@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html>
-  <head>
+<html lang="en">
+ <head>
     <title>Books List</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -10,32 +10,31 @@
     />
     <link rel="stylesheet" href="/css/navbar.css" />
     <link rel="stylesheet" href="/css/footer.css" />
-    <link rel="stylesheet" type="text/css" href="/books.css" />
+    <link rel="stylesheet" href="/books.css" />
   </head>
   <body>
-    <div id="page-container">
-      <%- include('partials/navbar') %>
-      <div id="content-wrap">
-        <div class="books-container">
-          <% books.map((element, index) => { %>
-          <div class="book-item">
-            <div class="book-cover">
-              <img
-                width="200px"
-                src="https://s-media-cache-ak0.pinimg.com/564x/f9/8e/2d/f98e2d661445620266c0855d418aab71.jpg"
-              />
-            </div>
-            <div class="description">
-              <p class="title">
-                <%= element.title %><br />
-                <span class="author"><%= element.author %></span>
-              </p>
-            </div>
-          </div>
-          <% }) %>
-        </div>
-      </div>
-      <%- include('partials/footer') %>
+    <header>
+<span>menu</span>
+    </header>
+<%- include('partials/navbar') %>
+<div class="books-container">
+  <% books.map((element, index) => { %>
+  <div class="book-item">
+    <div class="book-cover">
+      <img
+        width="200px"
+        src="https://s-media-cache-ak0.pinimg.com/564x/f9/8e/2d/f98e2d661445620266c0855d418aab71.jpg"
+      />
     </div>
-  </body>
+    <div class="description">
+      <p class="title">
+        <%= element.title %><br />
+        <span class="author"><%= element.author %></span>
+      </p>
+    </div>
+  </div>
+  <% }) %>
+</div>
+<%- include('partials/footer') %>
+</body>
 </html>
