@@ -1,6 +1,7 @@
 .books-container {
   margin: 0 auto;
   max-width: 80%;
+  margin-bottom: 100px;
 }
 
 .choose {
@@ -114,27 +115,6 @@ animate it */
   height: 390px;
 }
 
-header {
-  background-color: hsl(0, 0%, 80%);
-  padding: 1rem;
-  height: 40px;
-}
-
-footer {
-  background-color: hsl(0, 0%, 80%);
-  padding: 1rem;
-  height: 40px;
-}
-
-body {
-  font-family: Arial, Helvetica, sans-serif;
-  margin: 0;
-  padding: 0;
-  width: 100vw;
-  height: 100vh;
-  display: grid;
-  grid-template-rows: auto 1fr auto;
-}
 /***********************************
 star animation
 ***********************************/
