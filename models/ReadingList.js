@@ -22,7 +22,6 @@ class ReadingList {
   }
 
   static async editreadstatus(book_id, user_id, read_status) {
-    console.log(book_id, user_id, read_status)
     const query =
       "UPDATE reading_list SET read_status = ? WHERE user_id = ? AND book_id = ?";
     await db.raw(query, [read_status, user_id, book_id ]);
