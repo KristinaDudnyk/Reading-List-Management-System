@@ -1,12 +1,11 @@
 import db from "../db/index.js";
 
-
 class User {
-  static async findUser(id) {
+  static async findUser(username, email) {
     try {
-      const query = "SELECT * FROM users WHERE id = ?";
-      const results = await db.raw(query, [id]);
-      return results;
+      const query = "SELECT * FROM users WHERE username = ? AND email = ?";
+      const results = await db.raw(query, [username, email]);
+      return results[0];
     } catch (error) {
       console.error("Error finding user:", error);
       throw error;
@@ -24,7 +23,6 @@ class User {
         email,
       ]);
       return results;
-
     } catch (error) {
       console.error("Error creating user:", error);
       throw error;
