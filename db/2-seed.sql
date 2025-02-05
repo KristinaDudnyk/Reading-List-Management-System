@@ -76,7 +76,8 @@ VALUES
     'Published as a shilling shocker, Robert Louis Stevensons dark psychological fantasy gave birth to the idea of the split personality. The story of respectable Dr Jekylls strange association with damnable young man Edward Hyde; the hunt through fog-bound London for a killer; and the final revelation of Hydes true identity is a chilling exploration of humanitys basest capacity for evil.',
     'paperback',
     'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/JekyllAndHyde1931Poster.jpg/800px-JekyllAndHyde1931Poster.jpg'
-  ) (
+  ),
+  (
     'The Silent Symphony',
     'Eleanor Vance',
     'Mystery',
@@ -116,5 +117,3 @@ VALUES
     'Non-Fiction',
     'https://m.media-amazon.com/images/I/41mpuYTkTAL._AC_UF894,1000_QL80_.jpg'
   );
-
-I

@@ -1,6 +1,8 @@
 -- Drop the 'books' table if it exists
 DROP TABLE IF EXISTS books;
+
 DROP TABLE IF EXISTS users;
+
 DROP TABLE IF EXISTS reading_list;
 
 -- Create the 'books' table
@@ -10,10 +12,9 @@ CREATE TABLE IF NOT EXISTS books (
     author TEXT NOT NULL,
     genre TEXT NOT NULL,
     summary TEXT NOT NULL,
-    book_type TEXT NOT NULL
+    book_type TEXT NOT NULL,
+    cover TEXT NOT NULL
 );
-
-
 
 -- Create the 'users' table
 CREATE TABLE IF NOT EXISTS users (
@@ -24,7 +25,6 @@ CREATE TABLE IF NOT EXISTS users (
     email TEXT NOT NULL UNIQUE
 );
 
-
 CREATE TABLE IF NOT EXISTS reading_list (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     user_id INTEGER NOT NULL,
@@ -33,6 +33,4 @@ CREATE TABLE IF NOT EXISTS reading_list (
     want_to_read BOOLEAN DEFAULT FALSE,
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
     FOREIGN KEY (book_id) REFERENCES books(id) ON DELETE CASCADE
-
 );
-
