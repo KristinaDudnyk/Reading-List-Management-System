@@ -63,7 +63,6 @@ app.post("/book", async (req, res) => {
 app.put("/book/:id", async (req, res) => {
   const { id } = req.params;
   const { title, author, genre, summary, book_type } = req.body;
-  console.log(id, title, author, genre, summary, book_type);
   await Book.editBook(id, title, author, genre, summary, book_type);
 
   res.status(200).json({ msg: "updated book" });
@@ -73,7 +72,6 @@ app.put("/book/:id", async (req, res) => {
 app.post("/readinglist/add", async (req, res) => {
   try {
     const payload = req.body;
-    console.log(payload);
 
     if (
       !payload.user_id ||
@@ -142,9 +140,6 @@ app.get("/homepage", async (req, res) => {
       (book) => book.genre.toLowerCase() === selectedGenre.toLowerCase(),
     );
   }
-
-  console.log("allowedGenres:", allowedGenres);
-  console.log("books:", books);
   res.render("homepage.ejs", { allowedGenres, books, selectedGenre });
 });
 //Login form submission and validation logic. (Username only) Ticket:#55

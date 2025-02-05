@@ -30,6 +30,12 @@
                 <%= element.title %><br />
                 <span class="author"><%= element.author %></span>
               </p>
+              <button
+                onClick="addToReadingList('<%= index %>')"
+                class="add-to-reading-list-btn"
+              >
+                Add to reading list
+              </button>
             </div>
           </div>
           <% }) %>
@@ -37,5 +43,7 @@
       </div>
       <%- include('partials/footer') %>
     </div>
+    
+    <script src="/js/addToReadingList.js"></script>
   </body>
 </html>

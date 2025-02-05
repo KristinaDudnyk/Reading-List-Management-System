@@ -6,7 +6,6 @@ class Book {
   static async findAll() {
     const query = "SELECT * FROM books";
     const results = await db.raw(query);
-    console.log(results);
     return results;
   }
 
@@ -32,8 +31,6 @@ class Book {
         summary,
         book_type,
       ]);
-      console.log("results", results[0]);
-
       return results[0];
     } catch (error) {
       console.error("Error creating user:", error);
