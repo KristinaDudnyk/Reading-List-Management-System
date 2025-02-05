@@ -1,21 +1,41 @@
-<%- include('partials/navbar') %>
-
-<div class="books-container">
-  <% books.map((element, index) => { %>
-  <div class="book-item">
-    <div class="book-cover">
-      <img
-        width="200px"
-        src="https://s-media-cache-ak0.pinimg.com/564x/f9/8e/2d/f98e2d661445620266c0855d418aab71.jpg"
-      />
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Books List</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/css/navbar.css" />
+    <link rel="stylesheet" href="/css/footer.css" />
+    <link rel="stylesheet" type="text/css" href="/books.css" />
+  </head>
+  <body>
+    <div id="page-container">
+      <%- include('partials/navbar') %>
+      <div id="content-wrap">
+        <div class="books-container">
+          <% books.map((element, index) => { %>
+          <div class="book-item">
+            <div class="book-cover">
+              <img
+                width="200px"
+                src="https://s-media-cache-ak0.pinimg.com/564x/f9/8e/2d/f98e2d661445620266c0855d418aab71.jpg"
+              />
+            </div>
+            <div class="description">
+              <p class="title">
+                <%= element.title %><br />
+                <span class="author"><%= element.author %></span>
+              </p>
+            </div>
+          </div>
+          <% }) %>
+        </div>
+      </div>
+      <%- include('partials/footer') %>
     </div>
-    <div class="description">
-      <p class="title">
-        <%= element.title %><br />
-        <span class="author"><%= element.author %></span>
-      </p>
-    </div>
-  </div>
-  <% }) %>
-</div>
-<%- include('partials/footer') %>
+  </body>
+</html>

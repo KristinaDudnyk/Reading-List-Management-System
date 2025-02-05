@@ -1,0 +1,80 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'poppins', sans-serif;
+}
+
+nav {
+  background-color: rgb(141, 93, 239);
+  display: flex;
+  color: white;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+}
+
+.logo a {
+  margin: 0;
+  color: white;
+  font-weight: 600;
+  font-size: 30px;
+  text-decoration: none;
+}
+
+.logo a:hover {
+    color: black;
+}
+
+.logo h1:hover {
+    color: black;
+}
+
+.navbar-items {
+  display: flex;
+}
+
+.navbar-items ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+}
+
+.navbar-items li {
+  margin: 0 15px;
+}
+
+.navbar-items ul li a {
+    color: white;
+}
+
+.navbar-items ul li a:hover {
+    color: black;
+}
+.navbar-link {
+  text-decoration: none;
+  color: black;
+  font-size: 16px;
+  padding: 5px 10px;
+}
+
+.sign-out-btn {
+  background-color: #00bcd4;
+  color: #4a4a4a;
+  border-radius: 5px;
+}
+.sign-out-btn:hover {
+  background-color: black;
+  color: white !important;
+}
+
+#page-container {
+    position: relative;
+    min-height: 100vh;
+}
+
+#content-wrap {
+    padding-bottom: 2.5rem; 
+}
+
