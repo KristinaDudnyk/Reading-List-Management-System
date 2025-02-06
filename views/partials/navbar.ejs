@@ -22,8 +22,13 @@
       // Select the user link and update the href
       const userLink = document.querySelector(".navbar-link[href='/user']");
       if (userLink) {
-        userLink.href = `/user/${userData.id}`; // Set dynamic URL
-        // Set dynamic URL for /readinglist here
+        userLink.href = `/user/${userData.id}`; // Set dynamic URL user page
+      }
+      const readingListLink = document.querySelector(
+        ".navbar-link[href='/readinglist']",
+      );
+      if (readingListLink) {
+        readingListLink.href = `/readinglist/${userData.id}`; // Set dynamic URL for reading list
       }
     }
   }

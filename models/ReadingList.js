@@ -23,10 +23,13 @@ class ReadingList {
     await db.raw(query, [read_status, user_id, book_id]);
   }
 
-  static async getReadingList() {
-    const query = "SELECT * FROM reading_list";
-    const results = await db.raw(query);
+  static async getAll(user_id) {
+    const query =
+      "SELECT books.*, reading_list.* FROM books INNER JOIN reading_list ON books.id = reading_list.book_id WHERE reading_list.user_id = ?;";
+    const results = await db.raw(query, [user_id]);
+    console.log("results", results);
     return results;
   }
 }
+
 export default ReadingList;
