@@ -12,10 +12,10 @@ async function addToReadingList(book_id) {
       body: JSON.stringify({
         user_id: user_id,
         book_id: book_id,
+        read_status: 'not read',
         want_to_read: true,
       }),
     });
-    console.log(response);
     return response;
   } catch (error) {
     console.error("Error occurred during fetch:", error);

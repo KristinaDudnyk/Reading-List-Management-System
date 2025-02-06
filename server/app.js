@@ -8,7 +8,6 @@ import ReadingList from "../models/ReadingList.js";
 import db from "../db/index.js";
 
 const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
 
 const app = express();
 app.set("views", "views");
@@ -25,7 +24,8 @@ app.get("/", async (req, res) => {
 app.get("/auth/login", async (req, res) => {
   const { username, email } = req.query;
   const user = await User.findUser(username, email);
-  res.render("userPage.ejs", { user });
+  let numOfBooksRead = 0;
+  res.render("userPage.ejs", { user, numOfBooksRead });
 });
 // endpoin for putUserInfoToLocalStorage
 app.get("/user/obj", async (req, res) => {
@@ -120,10 +120,7 @@ app.put("/update/readingList/:userId/:bookId", async (req, res) => {
 app.get("/user/:id", async (req, res) => {
   try {
     const id = Number(req.params.id);
-    console.log(typeof id);
-
     const user = await db("users").where({ id }).first();
-    console.log(user);
 
     if (!user) {
       return res
@@ -131,7 +128,9 @@ app.get("/user/:id", async (req, res) => {
         .render("userPage.ejs", { error: "User not found", user: null });
     }
 
-    res.render("userPage.ejs", { user });
+    const numOfBooksRead = await ReadingList.getStatistics(id);
+    
+    res.render("userPage.ejs", { user, numOfBooksRead });
   } catch (error) {
     console.error("Error fetching user:", error);
     res
@@ -160,5 +159,6 @@ app.get("/homepage", async (req, res) => {
   res.render("homepage.ejs", { allowedGenres, books, selectedGenre });
 });
 //Login form submission and validation logic. (Username only) Ticket:#55
+
 
 export default app;

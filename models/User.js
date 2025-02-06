@@ -3,9 +3,10 @@ import db from "../db/index.js";
 class User {
   static async findUser(username, email) {
     try {
+      console.log(username, email)
       const query = "SELECT * FROM users WHERE username = ? AND email = ?";
       const results = await db.raw(query, [username, email]);
-      return results[0];
+      return results;
     } catch (error) {
       console.error("Error finding user:", error);
       throw error;

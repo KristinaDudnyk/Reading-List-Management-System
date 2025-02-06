@@ -2,10 +2,10 @@ import db from "../db/index.js";
 
 class ReadingList {
   static async addBook(payload) {
-    const { user_id, book_id, want_to_read } = payload;
+    const { user_id, book_id, read_status, want_to_read } = payload;
     const query =
-      "INSERT INTO reading_list (user_id, book_id, want_to_read) VALUES (?, ?, ?) RETURNING *";
-    const result = await db.raw(query, [user_id, book_id, want_to_read]);
+      "INSERT INTO reading_list (user_id, book_id, read_status, want_to_read) VALUES (?, ?, ?, ?) RETURNING *";
+    const result = await db.raw(query, [user_id, book_id, read_status, want_to_read]);
     console.log("book was added to reading list", result[0]);
     return result[0];
   }
@@ -27,6 +27,13 @@ class ReadingList {
     const query = "SELECT * FROM reading_list";
     const results = await db.raw(query);
     return results;
+  }
+
+  static async getStatistics(userId) {  
+    const query =
+    "SELECT * FROM reading_list WHERE user_id = ?";
+    const numOfBooks = await db.raw(query, [userId]);
+    return numOfBooks.length;
   }
 }
 export default ReadingList;

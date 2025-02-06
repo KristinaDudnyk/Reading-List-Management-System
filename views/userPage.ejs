@@ -10,16 +10,27 @@
     />
     <link rel="stylesheet" href="/css/navbar.css" />
     <link rel="stylesheet" href="/css/footer.css" />
-    <link rel="stylesheet" href="/css/books.css" />
+    <link rel="stylesheet" href="/css/user.css" />
   </head>
   <body>
     <%- include('partials/navbar') %>
-    <div class="user-card">
-      <h2><%= user.first_name %> <%= user.last_name %></h2>
-      <p class="user-username"><%= user.username %></p>
-      <p class="user-email"><%= user.email %></p>
-      <p class="user-id"><%= user.id %></p>
+    <div class="card-container">
+      <div class="user-card">
+        <h1>User Details</h1>
+        <p><span>First Name: </span><%= user.first_name %> <br> <span>Last Name:</span> <%= user.last_name %></p>
+        <p class="user-username"><span>Username:</span> <%= user.username %></p>
+        <p class="user-email"><span>Email:</span> <%= user.email %></p>
+        <p class="user-id"><span>UserId</span>: <%= user.id %></p>
+      </div>
+
+      <div class="user-card">
+        <h1>User Statistics</h1>
+          <p><span>No. Books Read: </span><%= 20 %> </p>
+          <p><span>No. of books for horror: </span><%= 20 %> </p>
+          <p><span>No. Books Read: </span><%= 20 %> </p>
+      </div>
     </div>
+    
     <%- include('partials/footer') %>
     <script>
       const username = document.querySelector(".user-username").outerText;
