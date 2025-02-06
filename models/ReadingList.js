@@ -27,10 +27,27 @@ class ReadingList {
     await db.raw(query, [read_status, user_id, book_id ]);
   }
 
-static async getReadingList() {
-  const query = "SELECT * FROM reading_list";
-  const results = await db.raw(query);
-  return results;
+  static async getReadingList() {
+    const userdata = JSON.parse(localStorage.getItem("user"));
+    const userid = userdata.id;
+    console.log(userid);
+  
+    const query = "SELECT * FROM reading_list WHERE user_id = ?";
+    const [results] = await db.raw(query, [userid]);
+    return results;
+  }
 }
-}
+// app.get('/readinglist/:userId', async (req, res) => {
+//   const userId = req.params.userId;
+//   const query = `
+//     SELECT reading_list.isRead, books.id, books.title, books.author, books.genre
+//     FROM reading_list
+//     INNER JOIN books ON reading_list.book_id = books.id
+//     WHERE reading_list.user_id = ?
+//   `;
+
+//   const [results] = await connection.execute(query, [userId]);
+//   res.render('readingList.ejs', { readingList: results });
+// });
+
 export default ReadingList;

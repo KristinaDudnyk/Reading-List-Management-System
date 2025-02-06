@@ -146,8 +146,14 @@ app.get("/user/:id", async (req, res) => {
 });
 
 //Get the reading list
-app.get("/readinglist", async (req, res) => {
-  const readingList = await ReadingList.getReadingList();
+//app.get("/readinglist", async (req, res) => {
+//  const readingList = await ReadingList.getReadingList();
+//  res.render("readingList.ejs", { readingList });
+//});
+
+app.get("/readinglist/:user_id", async (req, res) => {
+  const userId = req.params.user_id;
+  const readingList = await ReadingList.getReadingList(userId);
   res.render("readingList.ejs", { readingList });
 });
 
