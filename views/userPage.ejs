@@ -28,7 +28,7 @@
       async function putUserInfoToLocalStorage(username, email) {
         try {
           const response = await fetch(
-            `/user/obj?username=${username}&email=${email}`
+            `/user/obj?username=${username}&email=${email}`,
           );
           const data = await response.json();
           if (data.error) {
