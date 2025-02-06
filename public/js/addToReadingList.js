@@ -1,11 +1,8 @@
-async function addToReadingList(index) {
+async function addToReadingList(book_id) {
   try {
     const userData = localStorage.getItem("user");
-
-    if (userData) {
-      let parsedUserData = JSON.parse(userData);
-      const userId = parsedUserData.id;
-    }
+    const parsedUserData = JSON.parse(userData);
+    const user_id = parsedUserData.id;
 
     const response = await fetch("/readinglist/add", {
       method: "POST",
@@ -13,8 +10,8 @@ async function addToReadingList(index) {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        user_id: userId,
-        book_id: index,
+        user_id: user_id,
+        book_id: book_id,
         want_to_read: true,
       }),
     });
