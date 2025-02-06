@@ -145,11 +145,11 @@ app.get("/user/:id", async (req, res) => {
   }
 });
 
-//Get the reading list
-//app.get("/readinglist", async (req, res) => {
-//  const readingList = await ReadingList.getReadingList();
-//  res.render("readingList.ejs", { readingList });
-//});
+app.get("/test/readinglist", async (req, res) => {
+   const user = req.query.user_id; 
+   console.log(user); 
+   const response = await ReadingList.getAll(user); 
+   res.status(200).json(response);});
 
 app.get("/readinglist/:user_id", async (req, res) => {
   const userId = req.params.user_id;
