@@ -34,7 +34,7 @@ app.get("/user/obj", async (req, res) => {
   res.status(200).json(user);
 });
 
-// POST user putUserInfoToLocalStorage
+// POST user
 app.post("/auth/register", async (req, res) => {
   const { username, first_name, last_name, email } = req.body;
   await User.createUser(username, first_name, last_name, email);
@@ -164,6 +164,25 @@ app.get("/homepage", async (req, res) => {
   }
   res.render("homepage.ejs", { allowedGenres, books, selectedGenre });
 });
-//Login form submission and validation logic. (Username only) Ticket:#55
+
+// Add book to reading list
+app.post("/add/readinglist/:id", async (req, res) => {
+  try {
+    const id = Number(req.params.id);
+    console.log(typeof id);
+
+    const bookAdded = ReadingList.addBooktolist;
+
+    res
+      .status(201)
+      .json({
+        msg: "successfully added book to reading list",
+        book: bookAdded,
+      });
+  } catch (error) {
+    console.error("Error adding book to reading list:", error);
+    res.status(500).render("userPage.ejs", { error: "Internal server error" });
+  }
+});
 
 export default app;
