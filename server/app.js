@@ -73,16 +73,11 @@ app.post("/readinglist/add", async (req, res) => {
   try {
     const payload = req.body;
 
-    if (
-      !payload.user_id ||
-      !payload.book_id ||
-      !payload.read_status ||
-      !payload.want_to_read
-    ) {
+    if (!payload.user_id || !payload.book_id || !payload.want_to_read) {
       return res.status(400).send({ message: "missing field" });
     }
 
-    await ReadingList.addBooktolist(payload);
+    await ReadingList.addBook(payload);
 
     res.status(201).send({ message: "Book added successfully" });
   } catch (error) {
@@ -99,7 +94,7 @@ app.delete("/delete/readinglist/book/:userId/:bookId", async (req, res) => {
   const bookId = req.params.bookId;
 
   try {
-    await ReadingList.removefromlist(userId, bookId);
+    await ReadingList.removeBook(userId, bookId);
     res.status(200).send({ message: "Book deleted successfully" });
   } catch {
     res.status(400).send({ message: "Failed to delete user" });
