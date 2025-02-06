@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title><%= book.title %> - Book Details</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&family=Roboto:ital,wght@0,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/navbar.css" />
+    <link rel="stylesheet" href="/css/footer.css" />
+    <link rel="stylesheet" href="/css/bookDetails.css" />
+</head>
+<body>
+    <div id="page-container">
+        <%- include('partials/navbar') %>
+        <div id="content-wrap">
+            <h1><%= book.title %></h1>
+            <div class="book-details">
+                <img src="<%= book.cover %>" alt="<%= book.title %> cover" style="width:200px;height:auto;">
+                <div class="book-info">
+                    <p><strong>Author:</strong> <%= book.author %></p>
+                    <p><strong>Genre:</strong> <%= book.genre %></p>
+                    <p><strong>Summary:</strong> <%= book.summary %></p>
+                </div>
+            </div>
+        </div>
+        <%- include('partials/footer') %>
+    </div>
+</body>
+</html>
