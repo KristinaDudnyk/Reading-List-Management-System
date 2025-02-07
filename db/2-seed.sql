@@ -26,6 +26,7 @@ VALUES
     'Mead',
     'Beth.Mead@gmail.com'
   ),
+  ('tt', 'Test', 'User', 'tt'),
   (
     'Leah_Williamson',
     'Leah',
