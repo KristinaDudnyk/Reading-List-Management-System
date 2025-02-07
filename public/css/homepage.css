@@ -1,36 +1,89 @@
-.list-of-books {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
+.books-container {
+    margin: 0 auto;
+    max-width: 80%;
+    margin-bottom: 120px;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-}
-
-.list-of-books li {
-    display: inline-block;
-    width: 230px;
+  }
+  
+  .book-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 30%; /* Adjust the width to fit three items per row */
     min-height: 390px;
     box-shadow: 0 0 20px #aaa;
-    margin: 25px;
+    margin: 25px 0;
     padding: 10px 10px 0 10px;
     vertical-align: top;
     transition: height 1s;
-}
-
-.list-of-books img {
-    width: 100px;
-    height: auto;
-    margin-bottom: 10px;
-}
-
-.list-of-books h2 {
-    font-size: 1.5em;
-    margin: 10px 0;
+  }
+  
+  .book-cover {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+  }
+  
+  .cover {
+    border: 2px solid gray;
+    height: 80%;
+    overflow: hidden;
+  }
+  
+  .cover img {
+    width: 100%;
+  }
+  
+  .book p {
+    margin-top: 12px;
+    font-size: 20px;
+  }
+  
+  .book .author {
+    font-size: 15px;
+  }
+  
+  .description {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+  
+  .add-to-reading-list-btn {
+    background-color: #00bcd4;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    font-family: 'poppins', sans-serif;
+    margin-bottom: 20px;
+  }
+  
+  .add-to-reading-list-btn:hover {
+    background-color: black;
+    color: white;
+  }
+  
+  @media (max-width: 941px) {
+    .book-item {
+      width: 45%; /* Adjust the width for smaller screens */
+    }
+  }
+  
+  @media (max-width: 730px) {
+    .book-item {
+      width: 100%; /* Adjust the width for mobile screens */
+      margin: 0 auto;
+      margin-top: 50px;
+    }
+  }
+  
+  h1 {
+    color: gray;
     text-align: center;
-}
-
-.list-of-books p {
-    font-size: 1em;
-    text-align: center;
-}
+    font-size: 50px;
+    margin-bottom: -3px;
+  }

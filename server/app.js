@@ -1,13 +1,9 @@
 import express from "express";
-import { fileURLToPath } from "node:url";
-import path from "path";
-
 import User from "../models/User.js";
 import Book from "../models/Book.js";
 import ReadingList from "../models/ReadingList.js";
 import db from "../db/index.js";
 
-const __filename = fileURLToPath(import.meta.url);
 
 const app = express();
 app.set("views", "views");
@@ -60,6 +56,7 @@ app.post("/book", async (req, res) => {
   res.status(200).json({ msg: "added book" });
 });
 
+// PUT book
 app.put("/book/:id", async (req, res) => {
   const { id } = req.params;
   const { title, author, genre, summary, book_type } = req.body;
@@ -68,7 +65,7 @@ app.put("/book/:id", async (req, res) => {
   res.status(200).json({ msg: "updated book" });
 });
 
-//Adding book to reading list including error handling
+// POST book to reading list including error handling
 app.post("/readinglist/add", async (req, res) => {
   try {
     const payload = req.body;
@@ -88,7 +85,7 @@ app.post("/readinglist/add", async (req, res) => {
   }
 });
 
-//Delete book from reading list
+// DELETE book from reading list
 app.delete("/delete/readinglist/book/:userId/:bookId", async (req, res) => {
   const userId = req.params.userId;
   const bookId = req.params.bookId;
@@ -139,12 +136,17 @@ app.get("/user/:id", async (req, res) => {
   }
 });
 
-//Get the reading list
-app.get("/readinglist", async (req, res) => {
-  const readingList = await ReadingList.getReadingList();
+// GET reading list
+app.get("/readinglist/:user_id", async (req, res) => {
+  const id = Number(req.params.user_id);
+  console.log("id", id);
+
+  const readingList = await ReadingList.getAll(id);
+  console.log("readingList", readingList);
   res.render("readingList.ejs", { readingList });
 });
 
+// GET all books
 app.get("/homepage", async (req, res) => {
   const allowedGenres = Book.genres;
   const selectedGenre = req.query.genre || "";
@@ -158,7 +160,36 @@ app.get("/homepage", async (req, res) => {
   }
   res.render("homepage.ejs", { allowedGenres, books, selectedGenre });
 });
-//Login form submission and validation logic. (Username only) Ticket:#55
+app.get("/book/:id", async (req, res) => {
+  try {
+    const bookId = req.params.id;
+
+    const book = (await Book.findById(bookId))[0];
+
+    if (!book) {
+      return res.status(404).send("Book not found");
+    }
+
+    res.render("bookDetails.ejs", { book });
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Server Error");
+  }
+
+  // PUT tag
+
+  app.put("/book/:id/tag", async (req, res) => {
+    const { id } = req.params;
+    const { tag } = req.body;
+
+    try {
+      const updatedBook = await Book.addTag(id, tag);
+      res.status(200).json({ msg: "tag added", book: updatedBook });
+    } catch (error) {
+      res.status(400).json({ msg: error.message });
+    }
+  });
+});
 
 
 export default app;
