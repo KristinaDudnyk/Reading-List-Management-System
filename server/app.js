@@ -41,12 +41,6 @@ app.delete("/delete/user/:id", async (req, res) => {
   res.status(200).json({ msg: "successfully deleted user" });
 });
 
-// GET books
-app.get("/book", async (req, res) => {
-  const books = await Book.findAll();
-  res.render("books.ejs", { books });
-});
-
 // POST book
 app.post("/book", async (req, res) => {
   const { title, author, genre, summary, book_type, username } = req.body;
@@ -159,10 +153,11 @@ app.get("/homepage", async (req, res) => {
   }
   res.render("homepage.ejs", { allowedGenres, books, selectedGenre });
 });
+
+// GET book by id
 app.get("/book/:id", async (req, res) => {
   try {
     const bookId = req.params.id;
-
     const book = (await Book.findById(bookId))[0];
 
     if (!book) {
@@ -176,7 +171,6 @@ app.get("/book/:id", async (req, res) => {
   }
 
   // PUT tag
-
   app.put("/book/:id/tag", async (req, res) => {
     const { id } = req.params;
     const { tag } = req.body;
