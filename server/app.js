@@ -159,5 +159,35 @@ app.get("/homepage", async (req, res) => {
   }
   res.render("homepage.ejs", { allowedGenres, books, selectedGenre });
 });
+app.get("/book/:id", async (req, res) => {
+  try {
+    const bookId = req.params.id;
+
+    const book = (await Book.findById(bookId))[0];
+
+    if (!book) {
+      return res.status(404).send("Book not found");
+    }
+
+    res.render("bookDetails.ejs", { book });
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Server Error");
+  }
+
+  // PUT tag
+
+  app.put("/book/:id/tag", async (req, res) => {
+    const { id } = req.params;
+    const { tag } = req.body;
+
+    try {
+      const updatedBook = await Book.addTag(id, tag);
+      res.status(200).json({ msg: "tag added", book: updatedBook });
+    } catch (error) {
+      res.status(400).json({ msg: error.message });
+    }
+  });
+});
 
 export default app;

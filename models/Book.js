@@ -2,6 +2,7 @@ import db from '../db/index.js';
 
 class Book {
   static genres = ["Fiction", "Non-fiction", "kids"];
+  static tags = ["Like", "Love", "Dislike", "Hate"];
 
   static async findAll() {
     const query = "SELECT * FROM books";
@@ -48,6 +49,16 @@ class Book {
     const query = "DELETE FROM books WHERE id = ? RETURNING *";
     const results = await db.raw(query, [id]);
     return results;
+  }
+
+  static async addTag(bookId, tagName) {
+    if (!Book.tags.includes(tagName)) {
+      throw new Error("Invalid tag. Valid tags are: Like, Love, Dislike, Hate");
+    }
+
+    const query = "UPDATE books SET tag = ? WHERE id = ? RETURNING *";
+    const results = await db.raw(query, [tagName, bookId]);
+    return results[0];
   }
 }
 

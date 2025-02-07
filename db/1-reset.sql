@@ -12,7 +12,8 @@ CREATE TABLE IF NOT EXISTS books (
     author TEXT NOT NULL,
     genre TEXT NOT NULL,
     summary TEXT NOT NULL,
-    cover TEXT NOT NULL
+    cover TEXT NOT NULL,
+    tag TEXT CHECK (tag IN ('Like', 'Love', 'Dislike', 'Hate'))
 );
 
 -- Create the 'users' table

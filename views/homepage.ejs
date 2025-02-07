@@ -36,8 +36,8 @@
                             <a href="/book/<%= element.id %>"><%= element.title %></a><br />
                             <span class="author"><%= element.author %></span>
                         </p>
-                        <button onClick="addToReadingList('<%= index %>')" class="add-to-reading-list-btn">
-                            Add to reading list
+                        <button onClick="addToReadingList('<%= element.id %>')" class="add-to-reading-list-btn" > Add to reading list </button>
+
                         </button>
                     </div>
                 </div>
