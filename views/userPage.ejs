@@ -11,19 +11,39 @@
     <link rel="stylesheet" href="/css/navbar.css" />
     <link rel="stylesheet" href="/css/footer.css" />
     <link rel="stylesheet" href="/css/books.css" />
+    <link rel="stylesheet" href="/css/user.css" />
   </head>
   <body>
     <%- include('partials/navbar') %>
-    <div class="user-card">
-      <h2><%= user.first_name %> <%= user.last_name %></h2>
-      <p class="user-username"><%= user.username %></p>
-      <p class="user-email"><%= user.email %></p>
-      <p class="user-id"><%= user.id %></p>
+    <div class="card-container">
+      <div class="user-card">
+        <h2>User Details</h2>
+        <p><span>First Name: </span><%= user.first_name %></p>
+        <p><span>Last Name: </span><%= user.last_name %></p>
+        <div class="user-login-details">
+          <p class="username-tag">Username: </p>
+          <p class="user-username"><%= user.username %></p>
+
+        </div>
+        <div class="user-login-details">
+          <p class="email-tag">Email: </p>
+          <p class="user-email"><%= user.email %></p>
+        </div>
+        <p class="user-id"><span>UserId: </span><%= user.id %></p>
+      </div>
+      <div class="user-card">
+        <h2>User Statistics</h2>
+        <p class="user-username"><span>No. of books read: </span>20</p>
+        <p class="user-username"><span>No. of books not read: </span>10</p>
+        <p class="user-username"><span>Most read book: </span>Dogger</p>
+      </div>
     </div>
+  
     <%- include('partials/footer') %>
     <script>
-      const username = document.querySelector(".user-username").outerText;
+      const username = document.querySelector(".user-username").textContent
       const email = document.querySelector(".user-email").outerText;
+      console.log(username)
 
       async function putUserInfoToLocalStorage(username, email) {
         try {
