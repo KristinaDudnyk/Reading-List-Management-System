@@ -1,0 +1,37 @@
+
+form {
+    border: 3px solid rgb(141, 93, 239);
+    border-radius: 5px;
+    width: 400px;
+    padding: 50px;
+    margin-top: 100px;
+}
+
+#content-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.form-title {
+    text-align: center;
+    margin-bottom: 20px;
+    font-weight: 400;
+}
+
+.login-btn {
+    border: none;
+    background-color: rgb(141, 93, 239);
+    border-radius: 5px;
+    padding: 10px;
+    color: white;
+    width: 100%;
+}
+
+.login-btn:hover {
+    background-color: black;
+}
+
+label {
+    font-weight: 700;
+}
