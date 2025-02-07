@@ -13,29 +13,34 @@
     <div id="page-container">
         <%- include('partials/navbar') %>
         <div id="content-wrap">
-            <h1>Books List</h1>
-            <form method="get" action="/homepage">
+            <h1>Books</h1>
+            <form method="get" action="/homepage" class="select-genre-container">
                 <label for="genre">Filter by genre:</label>
-                <select id="genre" name="genre">
+                <select id="genre" name="genre"> 
+                    <!-- make ir default  -->
+                    <option value="all">All</option> 
+                    <!-- make ir default  -->
                     <% if (allowedGenres) { %>
                         <% allowedGenres.forEach(g => { %>
                             <option value="<%= g.toLowerCase() %>" <%= selectedGenre === g.toLowerCase() ? 'selected' : '' %>><%= g %></option>
                         <% }) %>
                     <% } %>
                 </select>
-                <button type="submit">Filter</button>
+                <button type="submit" class="add-to-reading-list-btn">Filter</button>
             </form>
             <div class="books-container">
                 <% books.map((element, index) => { %>
                 <div class="book-item">
-                    <div class="book-cover">
-                        <img src="<%= element.cover %>" alt="<%= element.title %> cover" style="width:250px;height:auto;">
-                    </div>
-                    <div class="description">
-                        <p class="title">
-                            <a href="/book/<%= element.id %>"><%= element.title %></a><br />
-                            <span class="author"><%= element.author %></span>
-                        </p>
+                        <a href="/book/<%= element.id %>"><img src="<%= element.cover %>" alt="<%= element.title %> cover" width="300px" height="400px"></a>                   
+                    <div class="book-info">
+                        
+                            <a href="/book/<%= element.id %>">
+                                <p class="book-title"><%= element.title %></p> 
+                            </a>
+                                <p class="book-author"><%= element.author %></p>
+                           
+                         
+                 
                         <button onClick="addToReadingList('<%= element.id %>')" class="add-to-reading-list-btn" > Add to reading list </button>
 
                         </button>
@@ -45,8 +50,7 @@
             </div>
         </div>
         <%- include('partials/footer') %>
-    </div>
-    
+    </div>   
     <script src="/js/addToReadingList.js"></script>
 </body>
 </html>
