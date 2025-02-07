@@ -1,0 +1,33 @@
+body {
+  background-color: rgba(255, 216, 195, 0.144);
+}
+.book-container {
+  width: 80%;
+  display: flex;
+  justify-self: center;
+  align-self: center;
+
+  border-radius: 15px;
+  border: 8px solid rgb(141, 93, 239);
+}
+.book-sub-container {
+  display: flex;
+  padding: 15px;
+  gap: 25px;
+}
+
+.book-info {
+  h1 {
+    font-size: 40px;
+  }
+  strong {
+    color: rgb(141, 93, 239);
+  }
+  p {
+    font-size: 20px;
+  }
+}
+
+#content-wrap {
+  padding-top: 50px;
+}
