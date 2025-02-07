@@ -1,0 +1,33 @@
+.user-card {
+    border: 2px solid rgb(141, 93, 239);
+    width: 400px;
+    border-radius: 5px;
+    padding: 50px;
+    background-color: rgba(141, 93, 239, .5);
+    min-height: 300px;
+}
+.card-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 100px;
+    gap: 40px;
+}
+
+span {
+    font-weight: 600;
+}
+
+.username-tag,
+.email-tag {
+    margin-right: 1px;
+    font-weight: 600;
+}
+
+.user-login-details {
+    display: flex;
+}
+
+p {
+    margin: 5px;
+}
